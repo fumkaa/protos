@@ -1,0 +1,118 @@
+syntax = "proto3";
+
+package catalog.v2;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/fumkaa/protos/gen/go/catalog/v2;catalogv2";
+
+service CatalogService {
+  rpc AddShop(AddShopRequest) returns (AddShopResponse);
+  rpc AddProductsBox(AddProductsBoxRequest) returns (AddProductsBoxResponse);
+}
+
+message AddShopRequest {
+  Shop shop = 1 [(buf.validate.field).required = true];
+}
+message AddShopResponse {
+  string shop_id = 1;
+}
+
+message AddProductsBoxRequest {
+  ProductsBox products_box = 1 [(buf.validate.field).required = true];
+}
+message AddProductsBoxResponse {
+  string products_box_id = 1;
+}
+
+// Перечисление для размеров боксов
+enum BoxSize {
+  BOX_SIZE_UNSPECIFIED = 0;
+  BOX_SIZE_SMALL = 1;
+  BOX_SIZE_MEDIUM = 2;
+  BOX_SIZE_LARGE = 3;
+}
+
+message TimeOfDay {
+  int32 hours = 1 [(buf.validate.field).int32 = {
+    gte: 0
+    lt: 24
+  }]; // 0-23
+  int32 minutes = 2 [(buf.validate.field).int32 = {
+    gte: 0
+    lt: 60
+  }]; // 0-59
+  int32 seconds = 3 [(buf.validate.field).int32 = {
+    gte: 0
+    lt: 60
+  }]; // 0-59
+}
+
+message Shop {
+  string name = 1 [(buf.validate.field).string = {
+    min_len: 3
+    max_len: 64
+    pattern: "^[a-zA-Zа-яА-Я0-9\\s\\-\"«»'&.,!?]+$"
+  }];
+  string description = 2 [(buf.validate.field).string = {
+    min_len: 10
+    max_len: 300
+    pattern: "^[a-zA-Zа-яА-Я0-9\\s\\-\"«»'&.,!?]+$"
+  }];
+  string address = 3 [(buf.validate.field).string = {
+    min_len: 10
+    max_len: 255
+  }];
+  double latitude = 4 [(buf.validate.field).double = {
+    gte: -90.0
+    lte: 90.0
+  }];
+  double longitude = 5 [(buf.validate.field).double = {
+    gte: -180.0
+    lte: 180.0
+  }];
+  TimeOfDay opening_time = 6 [(buf.validate.field).required = true];
+  TimeOfDay closing_time = 7 [(buf.validate.field).required = true];
+
+  option (buf.validate.message).cel = {
+    id: "shop.working_hours_duration"
+    message: "shop must be open for at least 30 minutes (1800s)"
+    // (CloseTime - OpenTime + 86400) % 86400 дает чистую длительность смены
+    expression:
+      "int((this.closing_time.hours * 3600 + this.closing_time.minutes * 60 + this.closing_time.seconds) - "
+      "(this.opening_time.hours * 3600 + this.opening_time.minutes * 60 + this.opening_time.seconds) + 86400) % 86400 >= 1800"
+  };
+}
+
+message ProductsBox {
+  string shop_id = 1 [(buf.validate.field).required = true];
+  string name = 2 [(buf.validate.field).string = {
+    min_len: 3
+    max_len: 64
+    pattern: "^[a-zA-Zа-яА-Я0-9\\s\\-\"«»'&.,!?]+$"
+  }];
+  string description = 3 [(buf.validate.field).string = {
+    min_len: 10
+    max_len: 200
+    pattern: "^[a-zA-Zа-яА-Я0-9\\s\\-\"«»'&.,!?]+$"
+  }];
+
+  // Цена в копейках (например, 25000 для 250.00 руб)
+  int64 discounted_price = 4 [(buf.validate.field).int64.gt = 0];
+  int64 original_price = 5 [(buf.validate.field).int64.gt = 0];
+
+  option (buf.validate.message).cel = {
+    id: "box.price_check"
+    message: "original_price must be greater than discounted_price"
+    expression: "this.original_price > this.discounted_price"
+  };
+
+  int32 quantity = 6 [(buf.validate.field).int32.gt = 0];
+
+  // SMALL, MEDIUM, LARGE
+  BoxSize size = 7 [(buf.validate.field).enum.defined_only = true];
+
+  google.protobuf.Timestamp created_at = 8 [(buf.validate.field).required = true];
+  google.protobuf.Timestamp updated_at = 9 [(buf.validate.field).required = true];
+}
