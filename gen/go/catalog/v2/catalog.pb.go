@@ -23,7 +23,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Перечисление для размеров боксов
 type BoxSize int32
 
 const (
@@ -164,27 +163,27 @@ func (x *AddShopResponse) GetShopId() string {
 	return ""
 }
 
-type AddProductsBoxRequest struct {
+type AddBoxRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	ProductsBox   *ProductsBox           `protobuf:"bytes,1,opt,name=products_box,json=productsBox,proto3" json:"products_box,omitempty"`
+	Box           *Box                   `protobuf:"bytes,1,opt,name=box,proto3" json:"box,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *AddProductsBoxRequest) Reset() {
-	*x = AddProductsBoxRequest{}
+func (x *AddBoxRequest) Reset() {
+	*x = AddBoxRequest{}
 	mi := &file_catalog_v2_catalog_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *AddProductsBoxRequest) String() string {
+func (x *AddBoxRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*AddProductsBoxRequest) ProtoMessage() {}
+func (*AddBoxRequest) ProtoMessage() {}
 
-func (x *AddProductsBoxRequest) ProtoReflect() protoreflect.Message {
+func (x *AddBoxRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_catalog_v2_catalog_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -196,39 +195,39 @@ func (x *AddProductsBoxRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use AddProductsBoxRequest.ProtoReflect.Descriptor instead.
-func (*AddProductsBoxRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use AddBoxRequest.ProtoReflect.Descriptor instead.
+func (*AddBoxRequest) Descriptor() ([]byte, []int) {
 	return file_catalog_v2_catalog_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *AddProductsBoxRequest) GetProductsBox() *ProductsBox {
+func (x *AddBoxRequest) GetBox() *Box {
 	if x != nil {
-		return x.ProductsBox
+		return x.Box
 	}
 	return nil
 }
 
-type AddProductsBoxResponse struct {
+type AddBoxResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	ProductsBoxId string                 `protobuf:"bytes,1,opt,name=products_box_id,json=productsBoxId,proto3" json:"products_box_id,omitempty"`
+	BoxId         string                 `protobuf:"bytes,1,opt,name=box_id,json=boxId,proto3" json:"box_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *AddProductsBoxResponse) Reset() {
-	*x = AddProductsBoxResponse{}
+func (x *AddBoxResponse) Reset() {
+	*x = AddBoxResponse{}
 	mi := &file_catalog_v2_catalog_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *AddProductsBoxResponse) String() string {
+func (x *AddBoxResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*AddProductsBoxResponse) ProtoMessage() {}
+func (*AddBoxResponse) ProtoMessage() {}
 
-func (x *AddProductsBoxResponse) ProtoReflect() protoreflect.Message {
+func (x *AddBoxResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_catalog_v2_catalog_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -240,14 +239,14 @@ func (x *AddProductsBoxResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use AddProductsBoxResponse.ProtoReflect.Descriptor instead.
-func (*AddProductsBoxResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use AddBoxResponse.ProtoReflect.Descriptor instead.
+func (*AddBoxResponse) Descriptor() ([]byte, []int) {
 	return file_catalog_v2_catalog_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *AddProductsBoxResponse) GetProductsBoxId() string {
+func (x *AddBoxResponse) GetBoxId() string {
 	if x != nil {
-		return x.ProductsBoxId
+		return x.BoxId
 	}
 	return ""
 }
@@ -314,13 +313,14 @@ func (x *TimeOfDay) GetSeconds() int32 {
 
 type Shop struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Description   string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
-	Address       string                 `protobuf:"bytes,3,opt,name=address,proto3" json:"address,omitempty"`
-	Latitude      float64                `protobuf:"fixed64,4,opt,name=latitude,proto3" json:"latitude,omitempty"`
-	Longitude     float64                `protobuf:"fixed64,5,opt,name=longitude,proto3" json:"longitude,omitempty"`
-	OpeningTime   *TimeOfDay             `protobuf:"bytes,6,opt,name=opening_time,json=openingTime,proto3" json:"opening_time,omitempty"`
-	ClosingTime   *TimeOfDay             `protobuf:"bytes,7,opt,name=closing_time,json=closingTime,proto3" json:"closing_time,omitempty"`
+	TaxId         string                 `protobuf:"bytes,1,opt,name=tax_id,json=taxId,proto3" json:"tax_id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	Address       string                 `protobuf:"bytes,4,opt,name=address,proto3" json:"address,omitempty"`
+	Latitude      float64                `protobuf:"fixed64,5,opt,name=latitude,proto3" json:"latitude,omitempty"`
+	Longitude     float64                `protobuf:"fixed64,6,opt,name=longitude,proto3" json:"longitude,omitempty"`
+	OpeningTime   *TimeOfDay             `protobuf:"bytes,7,opt,name=opening_time,json=openingTime,proto3" json:"opening_time,omitempty"`
+	ClosingTime   *TimeOfDay             `protobuf:"bytes,8,opt,name=closing_time,json=closingTime,proto3" json:"closing_time,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -353,6 +353,13 @@ func (x *Shop) ProtoReflect() protoreflect.Message {
 // Deprecated: Use Shop.ProtoReflect.Descriptor instead.
 func (*Shop) Descriptor() ([]byte, []int) {
 	return file_catalog_v2_catalog_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *Shop) GetTaxId() string {
+	if x != nil {
+		return x.TaxId
+	}
+	return ""
 }
 
 func (x *Shop) GetName() string {
@@ -404,7 +411,7 @@ func (x *Shop) GetClosingTime() *TimeOfDay {
 	return nil
 }
 
-type ProductsBox struct {
+type Box struct {
 	state       protoimpl.MessageState `protogen:"open.v1"`
 	ShopId      string                 `protobuf:"bytes,1,opt,name=shop_id,json=shopId,proto3" json:"shop_id,omitempty"`
 	Name        string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
@@ -421,20 +428,20 @@ type ProductsBox struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ProductsBox) Reset() {
-	*x = ProductsBox{}
+func (x *Box) Reset() {
+	*x = Box{}
 	mi := &file_catalog_v2_catalog_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ProductsBox) String() string {
+func (x *Box) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ProductsBox) ProtoMessage() {}
+func (*Box) ProtoMessage() {}
 
-func (x *ProductsBox) ProtoReflect() protoreflect.Message {
+func (x *Box) ProtoReflect() protoreflect.Message {
 	mi := &file_catalog_v2_catalog_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -446,68 +453,68 @@ func (x *ProductsBox) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ProductsBox.ProtoReflect.Descriptor instead.
-func (*ProductsBox) Descriptor() ([]byte, []int) {
+// Deprecated: Use Box.ProtoReflect.Descriptor instead.
+func (*Box) Descriptor() ([]byte, []int) {
 	return file_catalog_v2_catalog_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *ProductsBox) GetShopId() string {
+func (x *Box) GetShopId() string {
 	if x != nil {
 		return x.ShopId
 	}
 	return ""
 }
 
-func (x *ProductsBox) GetName() string {
+func (x *Box) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *ProductsBox) GetDescription() string {
+func (x *Box) GetDescription() string {
 	if x != nil {
 		return x.Description
 	}
 	return ""
 }
 
-func (x *ProductsBox) GetDiscountedPrice() int64 {
+func (x *Box) GetDiscountedPrice() int64 {
 	if x != nil {
 		return x.DiscountedPrice
 	}
 	return 0
 }
 
-func (x *ProductsBox) GetOriginalPrice() int64 {
+func (x *Box) GetOriginalPrice() int64 {
 	if x != nil {
 		return x.OriginalPrice
 	}
 	return 0
 }
 
-func (x *ProductsBox) GetQuantity() int32 {
+func (x *Box) GetQuantity() int32 {
 	if x != nil {
 		return x.Quantity
 	}
 	return 0
 }
 
-func (x *ProductsBox) GetSize() BoxSize {
+func (x *Box) GetSize() BoxSize {
 	if x != nil {
 		return x.Size
 	}
 	return BoxSize_BOX_SIZE_UNSPECIFIED
 }
 
-func (x *ProductsBox) GetCreatedAt() *timestamppb.Timestamp {
+func (x *Box) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreatedAt
 	}
 	return nil
 }
 
-func (x *ProductsBox) GetUpdatedAt() *timestamppb.Timestamp {
+func (x *Box) GetUpdatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.UpdatedAt
 	}
@@ -523,28 +530,29 @@ const file_catalog_v2_catalog_proto_rawDesc = "" +
 	"\x0eAddShopRequest\x12,\n" +
 	"\x04shop\x18\x01 \x01(\v2\x10.catalog.v2.ShopB\x06\xbaH\x03\xc8\x01\x01R\x04shop\"*\n" +
 	"\x0fAddShopResponse\x12\x17\n" +
-	"\ashop_id\x18\x01 \x01(\tR\x06shopId\"[\n" +
-	"\x15AddProductsBoxRequest\x12B\n" +
-	"\fproducts_box\x18\x01 \x01(\v2\x17.catalog.v2.ProductsBoxB\x06\xbaH\x03\xc8\x01\x01R\vproductsBox\"@\n" +
-	"\x16AddProductsBoxResponse\x12&\n" +
-	"\x0fproducts_box_id\x18\x01 \x01(\tR\rproductsBoxId\"v\n" +
+	"\ashop_id\x18\x01 \x01(\tR\x06shopId\":\n" +
+	"\rAddBoxRequest\x12)\n" +
+	"\x03box\x18\x01 \x01(\v2\x0f.catalog.v2.BoxB\x06\xbaH\x03\xc8\x01\x01R\x03box\"'\n" +
+	"\x0eAddBoxResponse\x12\x15\n" +
+	"\x06box_id\x18\x01 \x01(\tR\x05boxId\"v\n" +
 	"\tTimeOfDay\x12\x1f\n" +
 	"\x05hours\x18\x01 \x01(\x05B\t\xbaH\x06\x1a\x04\x10\x18(\x00R\x05hours\x12#\n" +
 	"\aminutes\x18\x02 \x01(\x05B\t\xbaH\x06\x1a\x04\x10<(\x00R\aminutes\x12#\n" +
-	"\aseconds\x18\x03 \x01(\x05B\t\xbaH\x06\x1a\x04\x10<(\x00R\aseconds\"\xf2\x05\n" +
-	"\x04Shop\x12F\n" +
-	"\x04name\x18\x01 \x01(\tB2\xbaH/r-\x10\x03\x18@2'^[a-zA-Zа-яА-Я0-9\\s\\-\"«»'&.,!?]+$R\x04name\x12U\n" +
-	"\vdescription\x18\x02 \x01(\tB3\xbaH0r.\x10\n" +
+	"\aseconds\x18\x03 \x01(\x05B\t\xbaH\x06\x1a\x04\x10<(\x00R\aseconds\"\xa9\x06\n" +
+	"\x04Shop\x125\n" +
+	"\x06tax_id\x18\x01 \x01(\tB\x1e\xbaH\x1br\x192\x17^[0-9]{10}$|^[0-9]{12}$R\x05taxId\x12F\n" +
+	"\x04name\x18\x02 \x01(\tB2\xbaH/r-\x10\x03\x18@2'^[a-zA-Zа-яА-Я0-9\\s\\-\"«»'&.,!?]+$R\x04name\x12U\n" +
+	"\vdescription\x18\x03 \x01(\tB3\xbaH0r.\x10\n" +
 	"\x18\xac\x022'^[a-zA-Zа-яА-Я0-9\\s\\-\"«»'&.,!?]+$R\vdescription\x12$\n" +
-	"\aaddress\x18\x03 \x01(\tB\n" +
+	"\aaddress\x18\x04 \x01(\tB\n" +
 	"\xbaH\ar\x05\x10\n" +
 	"\x18\xff\x01R\aaddress\x123\n" +
-	"\blatitude\x18\x04 \x01(\x01B\x17\xbaH\x14\x12\x12\x19\x00\x00\x00\x00\x00\x80V@)\x00\x00\x00\x00\x00\x80V\xc0R\blatitude\x125\n" +
-	"\tlongitude\x18\x05 \x01(\x01B\x17\xbaH\x14\x12\x12\x19\x00\x00\x00\x00\x00\x80f@)\x00\x00\x00\x00\x00\x80f\xc0R\tlongitude\x12@\n" +
-	"\fopening_time\x18\x06 \x01(\v2\x15.catalog.v2.TimeOfDayB\x06\xbaH\x03\xc8\x01\x01R\vopeningTime\x12@\n" +
-	"\fclosing_time\x18\a \x01(\v2\x15.catalog.v2.TimeOfDayB\x06\xbaH\x03\xc8\x01\x01R\vclosingTime:\xb4\x02\xbaH\xb0\x02\x1a\xad\x02\n" +
-	"\x1bshop.working_hours_duration\x121shop must be open for at least 30 minutes (1800s)\x1a\xda\x01int((this.closing_time.hours * 3600 + this.closing_time.minutes * 60 + this.closing_time.seconds) - (this.opening_time.hours * 3600 + this.opening_time.minutes * 60 + this.opening_time.seconds) + 86400) % 86400 >= 1800\"\x8a\x05\n" +
-	"\vProductsBox\x12\x1f\n" +
+	"\blatitude\x18\x05 \x01(\x01B\x17\xbaH\x14\x12\x12\x19\x00\x00\x00\x00\x00\x80V@)\x00\x00\x00\x00\x00\x80V\xc0R\blatitude\x125\n" +
+	"\tlongitude\x18\x06 \x01(\x01B\x17\xbaH\x14\x12\x12\x19\x00\x00\x00\x00\x00\x80f@)\x00\x00\x00\x00\x00\x80f\xc0R\tlongitude\x12@\n" +
+	"\fopening_time\x18\a \x01(\v2\x15.catalog.v2.TimeOfDayB\x06\xbaH\x03\xc8\x01\x01R\vopeningTime\x12@\n" +
+	"\fclosing_time\x18\b \x01(\v2\x15.catalog.v2.TimeOfDayB\x06\xbaH\x03\xc8\x01\x01R\vclosingTime:\xb4\x02\xbaH\xb0\x02\x1a\xad\x02\n" +
+	"\x1bshop.working_hours_duration\x121shop must be open for at least 30 minutes (1800s)\x1a\xda\x01int((this.closing_time.hours * 3600 + this.closing_time.minutes * 60 + this.closing_time.seconds) - (this.opening_time.hours * 3600 + this.opening_time.minutes * 60 + this.opening_time.seconds) + 86400) % 86400 >= 1800\"\x82\x05\n" +
+	"\x03Box\x12\x1f\n" +
 	"\ashop_id\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x06shopId\x12F\n" +
 	"\x04name\x18\x02 \x01(\tB2\xbaH/r-\x10\x03\x18@2'^[a-zA-Zа-яА-Я0-9\\s\\-\"«»'&.,!?]+$R\x04name\x12U\n" +
 	"\vdescription\x18\x03 \x01(\tB3\xbaH0r.\x10\n" +
@@ -562,10 +570,10 @@ const file_catalog_v2_catalog_proto_rawDesc = "" +
 	"\x14BOX_SIZE_UNSPECIFIED\x10\x00\x12\x12\n" +
 	"\x0eBOX_SIZE_SMALL\x10\x01\x12\x13\n" +
 	"\x0fBOX_SIZE_MEDIUM\x10\x02\x12\x12\n" +
-	"\x0eBOX_SIZE_LARGE\x10\x032\xad\x01\n" +
+	"\x0eBOX_SIZE_LARGE\x10\x032\x95\x01\n" +
 	"\x0eCatalogService\x12B\n" +
-	"\aAddShop\x12\x1a.catalog.v2.AddShopRequest\x1a\x1b.catalog.v2.AddShopResponse\x12W\n" +
-	"\x0eAddProductsBox\x12!.catalog.v2.AddProductsBoxRequest\x1a\".catalog.v2.AddProductsBoxResponseB\x9d\x01\n" +
+	"\aAddShop\x12\x1a.catalog.v2.AddShopRequest\x1a\x1b.catalog.v2.AddShopResponse\x12?\n" +
+	"\x06AddBox\x12\x19.catalog.v2.AddBoxRequest\x1a\x1a.catalog.v2.AddBoxResponseB\x9d\x01\n" +
 	"\x0ecom.catalog.v2B\fCatalogProtoP\x01Z4github.com/fumkaa/protos/gen/go/catalog/v2;catalogv2\xa2\x02\x03CXX\xaa\x02\n" +
 	"Catalog.V2\xca\x02\n" +
 	"Catalog\\V2\xe2\x02\x16Catalog\\V2\\GPBMetadata\xea\x02\vCatalog::V2b\x06proto3"
@@ -585,28 +593,28 @@ func file_catalog_v2_catalog_proto_rawDescGZIP() []byte {
 var file_catalog_v2_catalog_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_catalog_v2_catalog_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_catalog_v2_catalog_proto_goTypes = []any{
-	(BoxSize)(0),                   // 0: catalog.v2.BoxSize
-	(*AddShopRequest)(nil),         // 1: catalog.v2.AddShopRequest
-	(*AddShopResponse)(nil),        // 2: catalog.v2.AddShopResponse
-	(*AddProductsBoxRequest)(nil),  // 3: catalog.v2.AddProductsBoxRequest
-	(*AddProductsBoxResponse)(nil), // 4: catalog.v2.AddProductsBoxResponse
-	(*TimeOfDay)(nil),              // 5: catalog.v2.TimeOfDay
-	(*Shop)(nil),                   // 6: catalog.v2.Shop
-	(*ProductsBox)(nil),            // 7: catalog.v2.ProductsBox
-	(*timestamppb.Timestamp)(nil),  // 8: google.protobuf.Timestamp
+	(BoxSize)(0),                  // 0: catalog.v2.BoxSize
+	(*AddShopRequest)(nil),        // 1: catalog.v2.AddShopRequest
+	(*AddShopResponse)(nil),       // 2: catalog.v2.AddShopResponse
+	(*AddBoxRequest)(nil),         // 3: catalog.v2.AddBoxRequest
+	(*AddBoxResponse)(nil),        // 4: catalog.v2.AddBoxResponse
+	(*TimeOfDay)(nil),             // 5: catalog.v2.TimeOfDay
+	(*Shop)(nil),                  // 6: catalog.v2.Shop
+	(*Box)(nil),                   // 7: catalog.v2.Box
+	(*timestamppb.Timestamp)(nil), // 8: google.protobuf.Timestamp
 }
 var file_catalog_v2_catalog_proto_depIdxs = []int32{
 	6, // 0: catalog.v2.AddShopRequest.shop:type_name -> catalog.v2.Shop
-	7, // 1: catalog.v2.AddProductsBoxRequest.products_box:type_name -> catalog.v2.ProductsBox
+	7, // 1: catalog.v2.AddBoxRequest.box:type_name -> catalog.v2.Box
 	5, // 2: catalog.v2.Shop.opening_time:type_name -> catalog.v2.TimeOfDay
 	5, // 3: catalog.v2.Shop.closing_time:type_name -> catalog.v2.TimeOfDay
-	0, // 4: catalog.v2.ProductsBox.size:type_name -> catalog.v2.BoxSize
-	8, // 5: catalog.v2.ProductsBox.created_at:type_name -> google.protobuf.Timestamp
-	8, // 6: catalog.v2.ProductsBox.updated_at:type_name -> google.protobuf.Timestamp
+	0, // 4: catalog.v2.Box.size:type_name -> catalog.v2.BoxSize
+	8, // 5: catalog.v2.Box.created_at:type_name -> google.protobuf.Timestamp
+	8, // 6: catalog.v2.Box.updated_at:type_name -> google.protobuf.Timestamp
 	1, // 7: catalog.v2.CatalogService.AddShop:input_type -> catalog.v2.AddShopRequest
-	3, // 8: catalog.v2.CatalogService.AddProductsBox:input_type -> catalog.v2.AddProductsBoxRequest
+	3, // 8: catalog.v2.CatalogService.AddBox:input_type -> catalog.v2.AddBoxRequest
 	2, // 9: catalog.v2.CatalogService.AddShop:output_type -> catalog.v2.AddShopResponse
-	4, // 10: catalog.v2.CatalogService.AddProductsBox:output_type -> catalog.v2.AddProductsBoxResponse
+	4, // 10: catalog.v2.CatalogService.AddBox:output_type -> catalog.v2.AddBoxResponse
 	9, // [9:11] is the sub-list for method output_type
 	7, // [7:9] is the sub-list for method input_type
 	7, // [7:7] is the sub-list for extension type_name

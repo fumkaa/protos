@@ -19,8 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	CatalogService_AddShop_FullMethodName        = "/catalog.v2.CatalogService/AddShop"
-	CatalogService_AddProductsBox_FullMethodName = "/catalog.v2.CatalogService/AddProductsBox"
+	CatalogService_AddShop_FullMethodName = "/catalog.v2.CatalogService/AddShop"
+	CatalogService_AddBox_FullMethodName  = "/catalog.v2.CatalogService/AddBox"
 )
 
 // CatalogServiceClient is the client API for CatalogService service.
@@ -28,7 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CatalogServiceClient interface {
 	AddShop(ctx context.Context, in *AddShopRequest, opts ...grpc.CallOption) (*AddShopResponse, error)
-	AddProductsBox(ctx context.Context, in *AddProductsBoxRequest, opts ...grpc.CallOption) (*AddProductsBoxResponse, error)
+	AddBox(ctx context.Context, in *AddBoxRequest, opts ...grpc.CallOption) (*AddBoxResponse, error)
 }
 
 type catalogServiceClient struct {
@@ -49,10 +49,10 @@ func (c *catalogServiceClient) AddShop(ctx context.Context, in *AddShopRequest, 
 	return out, nil
 }
 
-func (c *catalogServiceClient) AddProductsBox(ctx context.Context, in *AddProductsBoxRequest, opts ...grpc.CallOption) (*AddProductsBoxResponse, error) {
+func (c *catalogServiceClient) AddBox(ctx context.Context, in *AddBoxRequest, opts ...grpc.CallOption) (*AddBoxResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AddProductsBoxResponse)
-	err := c.cc.Invoke(ctx, CatalogService_AddProductsBox_FullMethodName, in, out, cOpts...)
+	out := new(AddBoxResponse)
+	err := c.cc.Invoke(ctx, CatalogService_AddBox_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -64,7 +64,7 @@ func (c *catalogServiceClient) AddProductsBox(ctx context.Context, in *AddProduc
 // for forward compatibility.
 type CatalogServiceServer interface {
 	AddShop(context.Context, *AddShopRequest) (*AddShopResponse, error)
-	AddProductsBox(context.Context, *AddProductsBoxRequest) (*AddProductsBoxResponse, error)
+	AddBox(context.Context, *AddBoxRequest) (*AddBoxResponse, error)
 	mustEmbedUnimplementedCatalogServiceServer()
 }
 
@@ -78,8 +78,8 @@ type UnimplementedCatalogServiceServer struct{}
 func (UnimplementedCatalogServiceServer) AddShop(context.Context, *AddShopRequest) (*AddShopResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method AddShop not implemented")
 }
-func (UnimplementedCatalogServiceServer) AddProductsBox(context.Context, *AddProductsBoxRequest) (*AddProductsBoxResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method AddProductsBox not implemented")
+func (UnimplementedCatalogServiceServer) AddBox(context.Context, *AddBoxRequest) (*AddBoxResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method AddBox not implemented")
 }
 func (UnimplementedCatalogServiceServer) mustEmbedUnimplementedCatalogServiceServer() {}
 func (UnimplementedCatalogServiceServer) testEmbeddedByValue()                        {}
@@ -120,20 +120,20 @@ func _CatalogService_AddShop_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CatalogService_AddProductsBox_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddProductsBoxRequest)
+func _CatalogService_AddBox_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddBoxRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CatalogServiceServer).AddProductsBox(ctx, in)
+		return srv.(CatalogServiceServer).AddBox(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: CatalogService_AddProductsBox_FullMethodName,
+		FullMethod: CatalogService_AddBox_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CatalogServiceServer).AddProductsBox(ctx, req.(*AddProductsBoxRequest))
+		return srv.(CatalogServiceServer).AddBox(ctx, req.(*AddBoxRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -150,8 +150,8 @@ var CatalogService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _CatalogService_AddShop_Handler,
 		},
 		{
-			MethodName: "AddProductsBox",
-			Handler:    _CatalogService_AddProductsBox_Handler,
+			MethodName: "AddBox",
+			Handler:    _CatalogService_AddBox_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

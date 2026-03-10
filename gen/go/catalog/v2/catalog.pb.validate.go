@@ -266,22 +266,22 @@ var _ interface {
 	ErrorName() string
 } = AddShopResponseValidationError{}
 
-// Validate checks the field values on AddProductsBoxRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the first error encountered is returned, or nil if there are no violations.
-func (m *AddProductsBoxRequest) Validate() error {
+// Validate checks the field values on AddBoxRequest with the rules defined in
+// the proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *AddBoxRequest) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on AddProductsBoxRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// AddProductsBoxRequestMultiError, or nil if none found.
-func (m *AddProductsBoxRequest) ValidateAll() error {
+// ValidateAll checks the field values on AddBoxRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in AddBoxRequestMultiError, or
+// nil if none found.
+func (m *AddBoxRequest) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *AddProductsBoxRequest) validate(all bool) error {
+func (m *AddBoxRequest) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -289,28 +289,28 @@ func (m *AddProductsBoxRequest) validate(all bool) error {
 	var errors []error
 
 	if all {
-		switch v := interface{}(m.GetProductsBox()).(type) {
+		switch v := interface{}(m.GetBox()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, AddProductsBoxRequestValidationError{
-					field:  "ProductsBox",
+				errors = append(errors, AddBoxRequestValidationError{
+					field:  "Box",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, AddProductsBoxRequestValidationError{
-					field:  "ProductsBox",
+				errors = append(errors, AddBoxRequestValidationError{
+					field:  "Box",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetProductsBox()).(interface{ Validate() error }); ok {
+	} else if v, ok := interface{}(m.GetBox()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return AddProductsBoxRequestValidationError{
-				field:  "ProductsBox",
+			return AddBoxRequestValidationError{
+				field:  "Box",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}
@@ -318,19 +318,19 @@ func (m *AddProductsBoxRequest) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return AddProductsBoxRequestMultiError(errors)
+		return AddBoxRequestMultiError(errors)
 	}
 
 	return nil
 }
 
-// AddProductsBoxRequestMultiError is an error wrapping multiple validation
-// errors returned by AddProductsBoxRequest.ValidateAll() if the designated
-// constraints aren't met.
-type AddProductsBoxRequestMultiError []error
+// AddBoxRequestMultiError is an error wrapping multiple validation errors
+// returned by AddBoxRequest.ValidateAll() if the designated constraints
+// aren't met.
+type AddBoxRequestMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m AddProductsBoxRequestMultiError) Error() string {
+func (m AddBoxRequestMultiError) Error() string {
 	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -339,11 +339,11 @@ func (m AddProductsBoxRequestMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m AddProductsBoxRequestMultiError) AllErrors() []error { return m }
+func (m AddBoxRequestMultiError) AllErrors() []error { return m }
 
-// AddProductsBoxRequestValidationError is the validation error returned by
-// AddProductsBoxRequest.Validate if the designated constraints aren't met.
-type AddProductsBoxRequestValidationError struct {
+// AddBoxRequestValidationError is the validation error returned by
+// AddBoxRequest.Validate if the designated constraints aren't met.
+type AddBoxRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -351,24 +351,22 @@ type AddProductsBoxRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e AddProductsBoxRequestValidationError) Field() string { return e.field }
+func (e AddBoxRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e AddProductsBoxRequestValidationError) Reason() string { return e.reason }
+func (e AddBoxRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e AddProductsBoxRequestValidationError) Cause() error { return e.cause }
+func (e AddBoxRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e AddProductsBoxRequestValidationError) Key() bool { return e.key }
+func (e AddBoxRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e AddProductsBoxRequestValidationError) ErrorName() string {
-	return "AddProductsBoxRequestValidationError"
-}
+func (e AddBoxRequestValidationError) ErrorName() string { return "AddBoxRequestValidationError" }
 
 // Error satisfies the builtin error interface
-func (e AddProductsBoxRequestValidationError) Error() string {
+func (e AddBoxRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -380,14 +378,14 @@ func (e AddProductsBoxRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sAddProductsBoxRequest.%s: %s%s",
+		"invalid %sAddBoxRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = AddProductsBoxRequestValidationError{}
+var _ error = AddBoxRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -395,46 +393,46 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = AddProductsBoxRequestValidationError{}
+} = AddBoxRequestValidationError{}
 
-// Validate checks the field values on AddProductsBoxResponse with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the first error encountered is returned, or nil if there are no violations.
-func (m *AddProductsBoxResponse) Validate() error {
+// Validate checks the field values on AddBoxResponse with the rules defined in
+// the proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *AddBoxResponse) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on AddProductsBoxResponse with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// AddProductsBoxResponseMultiError, or nil if none found.
-func (m *AddProductsBoxResponse) ValidateAll() error {
+// ValidateAll checks the field values on AddBoxResponse with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in AddBoxResponseMultiError,
+// or nil if none found.
+func (m *AddBoxResponse) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *AddProductsBoxResponse) validate(all bool) error {
+func (m *AddBoxResponse) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
 
 	var errors []error
 
-	// no validation rules for ProductsBoxId
+	// no validation rules for BoxId
 
 	if len(errors) > 0 {
-		return AddProductsBoxResponseMultiError(errors)
+		return AddBoxResponseMultiError(errors)
 	}
 
 	return nil
 }
 
-// AddProductsBoxResponseMultiError is an error wrapping multiple validation
-// errors returned by AddProductsBoxResponse.ValidateAll() if the designated
-// constraints aren't met.
-type AddProductsBoxResponseMultiError []error
+// AddBoxResponseMultiError is an error wrapping multiple validation errors
+// returned by AddBoxResponse.ValidateAll() if the designated constraints
+// aren't met.
+type AddBoxResponseMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m AddProductsBoxResponseMultiError) Error() string {
+func (m AddBoxResponseMultiError) Error() string {
 	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -443,11 +441,11 @@ func (m AddProductsBoxResponseMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m AddProductsBoxResponseMultiError) AllErrors() []error { return m }
+func (m AddBoxResponseMultiError) AllErrors() []error { return m }
 
-// AddProductsBoxResponseValidationError is the validation error returned by
-// AddProductsBoxResponse.Validate if the designated constraints aren't met.
-type AddProductsBoxResponseValidationError struct {
+// AddBoxResponseValidationError is the validation error returned by
+// AddBoxResponse.Validate if the designated constraints aren't met.
+type AddBoxResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -455,24 +453,22 @@ type AddProductsBoxResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e AddProductsBoxResponseValidationError) Field() string { return e.field }
+func (e AddBoxResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e AddProductsBoxResponseValidationError) Reason() string { return e.reason }
+func (e AddBoxResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e AddProductsBoxResponseValidationError) Cause() error { return e.cause }
+func (e AddBoxResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e AddProductsBoxResponseValidationError) Key() bool { return e.key }
+func (e AddBoxResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e AddProductsBoxResponseValidationError) ErrorName() string {
-	return "AddProductsBoxResponseValidationError"
-}
+func (e AddBoxResponseValidationError) ErrorName() string { return "AddBoxResponseValidationError" }
 
 // Error satisfies the builtin error interface
-func (e AddProductsBoxResponseValidationError) Error() string {
+func (e AddBoxResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -484,14 +480,14 @@ func (e AddProductsBoxResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sAddProductsBoxResponse.%s: %s%s",
+		"invalid %sAddBoxResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = AddProductsBoxResponseValidationError{}
+var _ error = AddBoxResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -499,7 +495,7 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = AddProductsBoxResponseValidationError{}
+} = AddBoxResponseValidationError{}
 
 // Validate checks the field values on TimeOfDay with the rules defined in the
 // proto definition for this message. If any rules are violated, the first
@@ -626,6 +622,8 @@ func (m *Shop) validate(all bool) error {
 	}
 
 	var errors []error
+
+	// no validation rules for TaxId
 
 	// no validation rules for Name
 
@@ -772,22 +770,21 @@ var _ interface {
 	ErrorName() string
 } = ShopValidationError{}
 
-// Validate checks the field values on ProductsBox with the rules defined in
-// the proto definition for this message. If any rules are violated, the first
-// error encountered is returned, or nil if there are no violations.
-func (m *ProductsBox) Validate() error {
+// Validate checks the field values on Box with the rules defined in the proto
+// definition for this message. If any rules are violated, the first error
+// encountered is returned, or nil if there are no violations.
+func (m *Box) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on ProductsBox with the rules defined in
-// the proto definition for this message. If any rules are violated, the
-// result is a list of violation errors wrapped in ProductsBoxMultiError, or
-// nil if none found.
-func (m *ProductsBox) ValidateAll() error {
+// ValidateAll checks the field values on Box with the rules defined in the
+// proto definition for this message. If any rules are violated, the result is
+// a list of violation errors wrapped in BoxMultiError, or nil if none found.
+func (m *Box) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *ProductsBox) validate(all bool) error {
+func (m *Box) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -812,7 +809,7 @@ func (m *ProductsBox) validate(all bool) error {
 		switch v := interface{}(m.GetCreatedAt()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ProductsBoxValidationError{
+				errors = append(errors, BoxValidationError{
 					field:  "CreatedAt",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -820,7 +817,7 @@ func (m *ProductsBox) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, ProductsBoxValidationError{
+				errors = append(errors, BoxValidationError{
 					field:  "CreatedAt",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -829,7 +826,7 @@ func (m *ProductsBox) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetCreatedAt()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ProductsBoxValidationError{
+			return BoxValidationError{
 				field:  "CreatedAt",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -841,7 +838,7 @@ func (m *ProductsBox) validate(all bool) error {
 		switch v := interface{}(m.GetUpdatedAt()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ProductsBoxValidationError{
+				errors = append(errors, BoxValidationError{
 					field:  "UpdatedAt",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -849,7 +846,7 @@ func (m *ProductsBox) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, ProductsBoxValidationError{
+				errors = append(errors, BoxValidationError{
 					field:  "UpdatedAt",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -858,7 +855,7 @@ func (m *ProductsBox) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetUpdatedAt()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ProductsBoxValidationError{
+			return BoxValidationError{
 				field:  "UpdatedAt",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -867,18 +864,18 @@ func (m *ProductsBox) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return ProductsBoxMultiError(errors)
+		return BoxMultiError(errors)
 	}
 
 	return nil
 }
 
-// ProductsBoxMultiError is an error wrapping multiple validation errors
-// returned by ProductsBox.ValidateAll() if the designated constraints aren't met.
-type ProductsBoxMultiError []error
+// BoxMultiError is an error wrapping multiple validation errors returned by
+// Box.ValidateAll() if the designated constraints aren't met.
+type BoxMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m ProductsBoxMultiError) Error() string {
+func (m BoxMultiError) Error() string {
 	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -887,11 +884,11 @@ func (m ProductsBoxMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m ProductsBoxMultiError) AllErrors() []error { return m }
+func (m BoxMultiError) AllErrors() []error { return m }
 
-// ProductsBoxValidationError is the validation error returned by
-// ProductsBox.Validate if the designated constraints aren't met.
-type ProductsBoxValidationError struct {
+// BoxValidationError is the validation error returned by Box.Validate if the
+// designated constraints aren't met.
+type BoxValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -899,22 +896,22 @@ type ProductsBoxValidationError struct {
 }
 
 // Field function returns field value.
-func (e ProductsBoxValidationError) Field() string { return e.field }
+func (e BoxValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e ProductsBoxValidationError) Reason() string { return e.reason }
+func (e BoxValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e ProductsBoxValidationError) Cause() error { return e.cause }
+func (e BoxValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e ProductsBoxValidationError) Key() bool { return e.key }
+func (e BoxValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ProductsBoxValidationError) ErrorName() string { return "ProductsBoxValidationError" }
+func (e BoxValidationError) ErrorName() string { return "BoxValidationError" }
 
 // Error satisfies the builtin error interface
-func (e ProductsBoxValidationError) Error() string {
+func (e BoxValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -926,14 +923,14 @@ func (e ProductsBoxValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sProductsBox.%s: %s%s",
+		"invalid %sBox.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ProductsBoxValidationError{}
+var _ error = BoxValidationError{}
 
 var _ interface {
 	Field() string
@@ -941,4 +938,4 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ProductsBoxValidationError{}
+} = BoxValidationError{}
