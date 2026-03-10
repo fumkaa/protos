@@ -3,7 +3,6 @@ syntax = "proto3";
 package catalog.v2;
 
 import "buf/validate/validate.proto";
-import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/fumkaa/protos/gen/go/catalog/v2;catalogv2";
 
@@ -53,12 +52,12 @@ message Shop {
   string name = 2 [(buf.validate.field).string = {
     min_len: 3
     max_len: 64
-    pattern: "^[a-zA-Zа-яА-Я0-9\\s\\-\"«»'&.,!?]+$"
+    pattern: "^[a-zA-Zа-яА-Я0-9\\s\\-\"«»'&.,!?#]+$"
   }];
   string description = 3 [(buf.validate.field).string = {
     min_len: 10
     max_len: 300
-    pattern: "^[a-zA-Zа-яА-Я0-9\\s\\-\"«»'&.,!?]+$"
+    pattern: "^[a-zA-Zа-яА-Я0-9\\s\\-\"«»'&.,!?#]+$"
   }];
   string address = 4 [(buf.validate.field).string = {
     min_len: 10
@@ -90,12 +89,12 @@ message Box {
   string name = 2 [(buf.validate.field).string = {
     min_len: 3
     max_len: 64
-    pattern: "^[a-zA-Zа-яА-Я0-9\\s\\-\"«»'&.,!?]+$"
+    pattern: "^[a-zA-Zа-яА-Я0-9\\s\\-\"«»'&.,!?#]+$"
   }];
   string description = 3 [(buf.validate.field).string = {
     min_len: 10
     max_len: 200
-    pattern: "^[a-zA-Zа-яА-Я0-9\\s\\-\"«»'&.,!?]+$"
+    pattern: "^[a-zA-Zа-яА-Я0-9\\s\\-\"«»'&.,!?#]+$"
   }];
 
   // Цена в копейках (например, 25000 для 250.00 руб)
@@ -112,7 +111,4 @@ message Box {
 
   // SMALL, MEDIUM, LARGE
   BoxSize size = 7 [(buf.validate.field).enum.defined_only = true];
-
-  google.protobuf.Timestamp created_at = 8 [(buf.validate.field).required = true];
-  google.protobuf.Timestamp updated_at = 9 [(buf.validate.field).required = true];
 }

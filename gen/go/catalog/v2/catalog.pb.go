@@ -10,7 +10,6 @@ import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -421,9 +420,7 @@ type Box struct {
 	OriginalPrice   int64 `protobuf:"varint,5,opt,name=original_price,json=originalPrice,proto3" json:"original_price,omitempty"`
 	Quantity        int32 `protobuf:"varint,6,opt,name=quantity,proto3" json:"quantity,omitempty"`
 	// SMALL, MEDIUM, LARGE
-	Size          BoxSize                `protobuf:"varint,7,opt,name=size,proto3,enum=catalog.v2.BoxSize" json:"size,omitempty"`
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Size          BoxSize `protobuf:"varint,7,opt,name=size,proto3,enum=catalog.v2.BoxSize" json:"size,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -507,26 +504,12 @@ func (x *Box) GetSize() BoxSize {
 	return BoxSize_BOX_SIZE_UNSPECIFIED
 }
 
-func (x *Box) GetCreatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.CreatedAt
-	}
-	return nil
-}
-
-func (x *Box) GetUpdatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.UpdatedAt
-	}
-	return nil
-}
-
 var File_catalog_v2_catalog_proto protoreflect.FileDescriptor
 
 const file_catalog_v2_catalog_proto_rawDesc = "" +
 	"\n" +
 	"\x18catalog/v2/catalog.proto\x12\n" +
-	"catalog.v2\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\">\n" +
+	"catalog.v2\x1a\x1bbuf/validate/validate.proto\">\n" +
 	"\x0eAddShopRequest\x12,\n" +
 	"\x04shop\x18\x01 \x01(\v2\x10.catalog.v2.ShopB\x06\xbaH\x03\xc8\x01\x01R\x04shop\"*\n" +
 	"\x0fAddShopResponse\x12\x17\n" +
@@ -538,12 +521,12 @@ const file_catalog_v2_catalog_proto_rawDesc = "" +
 	"\tTimeOfDay\x12\x1f\n" +
 	"\x05hours\x18\x01 \x01(\x05B\t\xbaH\x06\x1a\x04\x10\x18(\x00R\x05hours\x12#\n" +
 	"\aminutes\x18\x02 \x01(\x05B\t\xbaH\x06\x1a\x04\x10<(\x00R\aminutes\x12#\n" +
-	"\aseconds\x18\x03 \x01(\x05B\t\xbaH\x06\x1a\x04\x10<(\x00R\aseconds\"\xa9\x06\n" +
+	"\aseconds\x18\x03 \x01(\x05B\t\xbaH\x06\x1a\x04\x10<(\x00R\aseconds\"\xab\x06\n" +
 	"\x04Shop\x125\n" +
-	"\x06tax_id\x18\x01 \x01(\tB\x1e\xbaH\x1br\x192\x17^[0-9]{10}$|^[0-9]{12}$R\x05taxId\x12F\n" +
-	"\x04name\x18\x02 \x01(\tB2\xbaH/r-\x10\x03\x18@2'^[a-zA-Zа-яА-Я0-9\\s\\-\"«»'&.,!?]+$R\x04name\x12U\n" +
-	"\vdescription\x18\x03 \x01(\tB3\xbaH0r.\x10\n" +
-	"\x18\xac\x022'^[a-zA-Zа-яА-Я0-9\\s\\-\"«»'&.,!?]+$R\vdescription\x12$\n" +
+	"\x06tax_id\x18\x01 \x01(\tB\x1e\xbaH\x1br\x192\x17^[0-9]{10}$|^[0-9]{12}$R\x05taxId\x12G\n" +
+	"\x04name\x18\x02 \x01(\tB3\xbaH0r.\x10\x03\x18@2(^[a-zA-Zа-яА-Я0-9\\s\\-\"«»'&.,!?#]+$R\x04name\x12V\n" +
+	"\vdescription\x18\x03 \x01(\tB4\xbaH1r/\x10\n" +
+	"\x18\xac\x022(^[a-zA-Zа-яА-Я0-9\\s\\-\"«»'&.,!?#]+$R\vdescription\x12$\n" +
 	"\aaddress\x18\x04 \x01(\tB\n" +
 	"\xbaH\ar\x05\x10\n" +
 	"\x18\xff\x01R\aaddress\x123\n" +
@@ -551,20 +534,16 @@ const file_catalog_v2_catalog_proto_rawDesc = "" +
 	"\tlongitude\x18\x06 \x01(\x01B\x17\xbaH\x14\x12\x12\x19\x00\x00\x00\x00\x00\x80f@)\x00\x00\x00\x00\x00\x80f\xc0R\tlongitude\x12@\n" +
 	"\fopening_time\x18\a \x01(\v2\x15.catalog.v2.TimeOfDayB\x06\xbaH\x03\xc8\x01\x01R\vopeningTime\x12@\n" +
 	"\fclosing_time\x18\b \x01(\v2\x15.catalog.v2.TimeOfDayB\x06\xbaH\x03\xc8\x01\x01R\vclosingTime:\xb4\x02\xbaH\xb0\x02\x1a\xad\x02\n" +
-	"\x1bshop.working_hours_duration\x121shop must be open for at least 30 minutes (1800s)\x1a\xda\x01int((this.closing_time.hours * 3600 + this.closing_time.minutes * 60 + this.closing_time.seconds) - (this.opening_time.hours * 3600 + this.opening_time.minutes * 60 + this.opening_time.seconds) + 86400) % 86400 >= 1800\"\x82\x05\n" +
+	"\x1bshop.working_hours_duration\x121shop must be open for at least 30 minutes (1800s)\x1a\xda\x01int((this.closing_time.hours * 3600 + this.closing_time.minutes * 60 + this.closing_time.seconds) - (this.opening_time.hours * 3600 + this.opening_time.minutes * 60 + this.opening_time.seconds) + 86400) % 86400 >= 1800\"\xfe\x03\n" +
 	"\x03Box\x12\x1f\n" +
-	"\ashop_id\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x06shopId\x12F\n" +
-	"\x04name\x18\x02 \x01(\tB2\xbaH/r-\x10\x03\x18@2'^[a-zA-Zа-яА-Я0-9\\s\\-\"«»'&.,!?]+$R\x04name\x12U\n" +
-	"\vdescription\x18\x03 \x01(\tB3\xbaH0r.\x10\n" +
-	"\x18\xc8\x012'^[a-zA-Zа-яА-Я0-9\\s\\-\"«»'&.,!?]+$R\vdescription\x122\n" +
+	"\ashop_id\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x06shopId\x12G\n" +
+	"\x04name\x18\x02 \x01(\tB3\xbaH0r.\x10\x03\x18@2(^[a-zA-Zа-яА-Я0-9\\s\\-\"«»'&.,!?#]+$R\x04name\x12V\n" +
+	"\vdescription\x18\x03 \x01(\tB4\xbaH1r/\x10\n" +
+	"\x18\xc8\x012(^[a-zA-Zа-яА-Я0-9\\s\\-\"«»'&.,!?#]+$R\vdescription\x122\n" +
 	"\x10discounted_price\x18\x04 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x0fdiscountedPrice\x12.\n" +
 	"\x0eoriginal_price\x18\x05 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\roriginalPrice\x12#\n" +
 	"\bquantity\x18\x06 \x01(\x05B\a\xbaH\x04\x1a\x02 \x00R\bquantity\x121\n" +
-	"\x04size\x18\a \x01(\x0e2\x13.catalog.v2.BoxSizeB\b\xbaH\x05\x82\x01\x02\x10\x01R\x04size\x12A\n" +
-	"\n" +
-	"created_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampB\x06\xbaH\x03\xc8\x01\x01R\tcreatedAt\x12A\n" +
-	"\n" +
-	"updated_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampB\x06\xbaH\x03\xc8\x01\x01R\tupdatedAt:y\xbaHv\x1at\n" +
+	"\x04size\x18\a \x01(\x0e2\x13.catalog.v2.BoxSizeB\b\xbaH\x05\x82\x01\x02\x10\x01R\x04size:y\xbaHv\x1at\n" +
 	"\x0fbox.price_check\x124original_price must be greater than discounted_price\x1a+this.original_price > this.discounted_price*`\n" +
 	"\aBoxSize\x12\x18\n" +
 	"\x14BOX_SIZE_UNSPECIFIED\x10\x00\x12\x12\n" +
@@ -593,15 +572,14 @@ func file_catalog_v2_catalog_proto_rawDescGZIP() []byte {
 var file_catalog_v2_catalog_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_catalog_v2_catalog_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_catalog_v2_catalog_proto_goTypes = []any{
-	(BoxSize)(0),                  // 0: catalog.v2.BoxSize
-	(*AddShopRequest)(nil),        // 1: catalog.v2.AddShopRequest
-	(*AddShopResponse)(nil),       // 2: catalog.v2.AddShopResponse
-	(*AddBoxRequest)(nil),         // 3: catalog.v2.AddBoxRequest
-	(*AddBoxResponse)(nil),        // 4: catalog.v2.AddBoxResponse
-	(*TimeOfDay)(nil),             // 5: catalog.v2.TimeOfDay
-	(*Shop)(nil),                  // 6: catalog.v2.Shop
-	(*Box)(nil),                   // 7: catalog.v2.Box
-	(*timestamppb.Timestamp)(nil), // 8: google.protobuf.Timestamp
+	(BoxSize)(0),            // 0: catalog.v2.BoxSize
+	(*AddShopRequest)(nil),  // 1: catalog.v2.AddShopRequest
+	(*AddShopResponse)(nil), // 2: catalog.v2.AddShopResponse
+	(*AddBoxRequest)(nil),   // 3: catalog.v2.AddBoxRequest
+	(*AddBoxResponse)(nil),  // 4: catalog.v2.AddBoxResponse
+	(*TimeOfDay)(nil),       // 5: catalog.v2.TimeOfDay
+	(*Shop)(nil),            // 6: catalog.v2.Shop
+	(*Box)(nil),             // 7: catalog.v2.Box
 }
 var file_catalog_v2_catalog_proto_depIdxs = []int32{
 	6, // 0: catalog.v2.AddShopRequest.shop:type_name -> catalog.v2.Shop
@@ -609,17 +587,15 @@ var file_catalog_v2_catalog_proto_depIdxs = []int32{
 	5, // 2: catalog.v2.Shop.opening_time:type_name -> catalog.v2.TimeOfDay
 	5, // 3: catalog.v2.Shop.closing_time:type_name -> catalog.v2.TimeOfDay
 	0, // 4: catalog.v2.Box.size:type_name -> catalog.v2.BoxSize
-	8, // 5: catalog.v2.Box.created_at:type_name -> google.protobuf.Timestamp
-	8, // 6: catalog.v2.Box.updated_at:type_name -> google.protobuf.Timestamp
-	1, // 7: catalog.v2.CatalogService.AddShop:input_type -> catalog.v2.AddShopRequest
-	3, // 8: catalog.v2.CatalogService.AddBox:input_type -> catalog.v2.AddBoxRequest
-	2, // 9: catalog.v2.CatalogService.AddShop:output_type -> catalog.v2.AddShopResponse
-	4, // 10: catalog.v2.CatalogService.AddBox:output_type -> catalog.v2.AddBoxResponse
-	9, // [9:11] is the sub-list for method output_type
-	7, // [7:9] is the sub-list for method input_type
-	7, // [7:7] is the sub-list for extension type_name
-	7, // [7:7] is the sub-list for extension extendee
-	0, // [0:7] is the sub-list for field type_name
+	1, // 5: catalog.v2.CatalogService.AddShop:input_type -> catalog.v2.AddShopRequest
+	3, // 6: catalog.v2.CatalogService.AddBox:input_type -> catalog.v2.AddBoxRequest
+	2, // 7: catalog.v2.CatalogService.AddShop:output_type -> catalog.v2.AddShopResponse
+	4, // 8: catalog.v2.CatalogService.AddBox:output_type -> catalog.v2.AddBoxResponse
+	7, // [7:9] is the sub-list for method output_type
+	5, // [5:7] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_catalog_v2_catalog_proto_init() }
