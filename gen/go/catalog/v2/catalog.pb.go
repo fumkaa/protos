@@ -163,10 +163,11 @@ func (x *AddShopResponse) GetShopId() string {
 }
 
 type AddBoxRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Box           *Box                   `protobuf:"bytes,1,opt,name=box,proto3" json:"box,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	IdempotencyKey string                 `protobuf:"bytes,1,opt,name=idempotency_key,json=idempotencyKey,proto3" json:"idempotency_key,omitempty"`
+	Box            *Box                   `protobuf:"bytes,2,opt,name=box,proto3" json:"box,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *AddBoxRequest) Reset() {
@@ -197,6 +198,13 @@ func (x *AddBoxRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use AddBoxRequest.ProtoReflect.Descriptor instead.
 func (*AddBoxRequest) Descriptor() ([]byte, []int) {
 	return file_catalog_v2_catalog_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *AddBoxRequest) GetIdempotencyKey() string {
+	if x != nil {
+		return x.IdempotencyKey
+	}
+	return ""
 }
 
 func (x *AddBoxRequest) GetBox() *Box {
@@ -513,9 +521,10 @@ const file_catalog_v2_catalog_proto_rawDesc = "" +
 	"\x0eAddShopRequest\x12,\n" +
 	"\x04shop\x18\x01 \x01(\v2\x10.catalog.v2.ShopB\x06\xbaH\x03\xc8\x01\x01R\x04shop\"*\n" +
 	"\x0fAddShopResponse\x12\x17\n" +
-	"\ashop_id\x18\x01 \x01(\tR\x06shopId\":\n" +
-	"\rAddBoxRequest\x12)\n" +
-	"\x03box\x18\x01 \x01(\v2\x0f.catalog.v2.BoxB\x06\xbaH\x03\xc8\x01\x01R\x03box\"'\n" +
+	"\ashop_id\x18\x01 \x01(\tR\x06shopId\"m\n" +
+	"\rAddBoxRequest\x121\n" +
+	"\x0fidempotency_key\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x0eidempotencyKey\x12)\n" +
+	"\x03box\x18\x02 \x01(\v2\x0f.catalog.v2.BoxB\x06\xbaH\x03\xc8\x01\x01R\x03box\"'\n" +
 	"\x0eAddBoxResponse\x12\x15\n" +
 	"\x06box_id\x18\x01 \x01(\tR\x05boxId\"v\n" +
 	"\tTimeOfDay\x12\x1f\n" +

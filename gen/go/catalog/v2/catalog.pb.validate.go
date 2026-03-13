@@ -288,6 +288,8 @@ func (m *AddBoxRequest) validate(all bool) error {
 
 	var errors []error
 
+	// no validation rules for IdempotencyKey
+
 	if all {
 		switch v := interface{}(m.GetBox()).(type) {
 		case interface{ ValidateAll() error }:
