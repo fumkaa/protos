@@ -111,5 +111,8 @@ message Box {
   int32 quantity = 6 [(buf.validate.field).int32.gt = 0];
 
   // SMALL, MEDIUM, LARGE
-  BoxSize size = 7 [(buf.validate.field).enum.defined_only = true];
+  BoxSize size = 7 [
+    (buf.validate.field).enum.defined_only = true,
+    (buf.validate.field).enum.not_in = 0
+  ];
 }

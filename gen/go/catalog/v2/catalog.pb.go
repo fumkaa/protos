@@ -543,7 +543,7 @@ const file_catalog_v2_catalog_proto_rawDesc = "" +
 	"\tlongitude\x18\x06 \x01(\x01B\x17\xbaH\x14\x12\x12\x19\x00\x00\x00\x00\x00\x80f@)\x00\x00\x00\x00\x00\x80f\xc0R\tlongitude\x12@\n" +
 	"\fopening_time\x18\a \x01(\v2\x15.catalog.v2.TimeOfDayB\x06\xbaH\x03\xc8\x01\x01R\vopeningTime\x12@\n" +
 	"\fclosing_time\x18\b \x01(\v2\x15.catalog.v2.TimeOfDayB\x06\xbaH\x03\xc8\x01\x01R\vclosingTime:\xb4\x02\xbaH\xb0\x02\x1a\xad\x02\n" +
-	"\x1bshop.working_hours_duration\x121shop must be open for at least 30 minutes (1800s)\x1a\xda\x01int((this.closing_time.hours * 3600 + this.closing_time.minutes * 60 + this.closing_time.seconds) - (this.opening_time.hours * 3600 + this.opening_time.minutes * 60 + this.opening_time.seconds) + 86400) % 86400 >= 1800\"\xfe\x03\n" +
+	"\x1bshop.working_hours_duration\x121shop must be open for at least 30 minutes (1800s)\x1a\xda\x01int((this.closing_time.hours * 3600 + this.closing_time.minutes * 60 + this.closing_time.seconds) - (this.opening_time.hours * 3600 + this.opening_time.minutes * 60 + this.opening_time.seconds) + 86400) % 86400 >= 1800\"\x80\x04\n" +
 	"\x03Box\x12\x1f\n" +
 	"\ashop_id\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x06shopId\x12G\n" +
 	"\x04name\x18\x02 \x01(\tB3\xbaH0r.\x10\x03\x18@2(^[a-zA-Zа-яА-Я0-9\\s\\-\"«»'&.,!?#]+$R\x04name\x12V\n" +
@@ -551,8 +551,9 @@ const file_catalog_v2_catalog_proto_rawDesc = "" +
 	"\x18\xc8\x012(^[a-zA-Zа-яА-Я0-9\\s\\-\"«»'&.,!?#]+$R\vdescription\x122\n" +
 	"\x10discounted_price\x18\x04 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\x0fdiscountedPrice\x12.\n" +
 	"\x0eoriginal_price\x18\x05 \x01(\x03B\a\xbaH\x04\"\x02 \x00R\roriginalPrice\x12#\n" +
-	"\bquantity\x18\x06 \x01(\x05B\a\xbaH\x04\x1a\x02 \x00R\bquantity\x121\n" +
-	"\x04size\x18\a \x01(\x0e2\x13.catalog.v2.BoxSizeB\b\xbaH\x05\x82\x01\x02\x10\x01R\x04size:y\xbaHv\x1at\n" +
+	"\bquantity\x18\x06 \x01(\x05B\a\xbaH\x04\x1a\x02 \x00R\bquantity\x123\n" +
+	"\x04size\x18\a \x01(\x0e2\x13.catalog.v2.BoxSizeB\n" +
+	"\xbaH\a\x82\x01\x04\x10\x01 \x00R\x04size:y\xbaHv\x1at\n" +
 	"\x0fbox.price_check\x124original_price must be greater than discounted_price\x1a+this.original_price > this.discounted_price*`\n" +
 	"\aBoxSize\x12\x18\n" +
 	"\x14BOX_SIZE_UNSPECIFIED\x10\x00\x12\x12\n" +
